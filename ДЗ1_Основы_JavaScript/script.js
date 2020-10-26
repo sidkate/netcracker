@@ -19,17 +19,19 @@ var employees = [{"name":"Alex","surname":"Yavkin","position":"sr. engineer","de
 
 //Exercise 1
 function firstExercise(employees) {
-  const result = [];
-  for (let i = 0; i < employees.length; i++) {
-	  if (employees[i].department === "GUI" && employees[i].salary > 15000) {
-		  result.push(employees[i]);
-	  }
-  }
 
-  return result.sort(function(a, b) {
-	  var dateA = new Date(a.birthday), dateB = new Date(b.birthday)
-	return dateA-dateB //сортировка по возрастающей дате рождения
-  })
+	const result = [];
+	  
+  	for (let i = 0; i < employees.length; i++) {
+	  	if (employees[i].department === "GUI" && employees[i].salary > 15000) {
+		  result.push(employees[i]);
+	  	}
+  	}
+
+  	return result.sort(function(a, b) {
+	  	var dateA = new Date(a.birthday), dateB = new Date(b.birthday);
+		return dateA-dateB; //сортировка по возрастающей дате рождения
+  	})
 
 }
 
@@ -48,7 +50,7 @@ function secondExercise(employees) {
 	}
 	
 	return femaleNames.sort().filter(function(el,i,a) {
-		return i === a.indexOf(el)
+		return i === a.indexOf(el);
 	})
 
 }
