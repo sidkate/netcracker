@@ -17,37 +17,40 @@ var employees = [{"name":"Alex","surname":"Yavkin","position":"sr. engineer","de
 	department: 'UX'
 }
 
-function yourFunction(employees) {
+//Exercise 1
+function firstExercise(employees) {
   const result = [];
-	/* Write your code here */
-  return result;
+  for (let i = 0; i < employees.length; i++) {
+	  if (employees[i].department === "GUI" && employees[i].salary > 15000) {
+		  result.push(employees[i]);
+	  }
+  }
+
+  return result.sort(function(a, b) {
+	  var dateA = new Date(a.birthday), dateB = new Date(b.birthday)
+	return dateA-dateB //сортировка по возрастающей дате рождения
+  })
+
 }
 
- // should show the result
-console.log(yourFunction(employees));
+console.log(firstExercise(employees));
 
 
+//Exercise 2
+function secondExercise(employees) {
 
-/**
- * Example function
- * Finds employees who has max salaries
- */
-function exampleFunction(employees) {
-	var maxSalary = 10000;
+	const femaleNames = [];
+
 	for (let i = 0; i < employees.length; i++) {
-		if (employees[i].salary > maxSalary) {
-			maxSalary = employees[i].salary;
+		if(employees[i].gender === "female") {
+			femaleNames.push(employees[i].name);
 		}
 	}
-	const result = [];
-	for (let i = 0; i < employees.length; i++) {
-		if (employees[i].salary === maxSalary) {
-			result.push(employees[i]);
-		}
-	}
-	return result;
+	
+	return femaleNames.sort().filter(function(el,i,a) {
+		return i === a.indexOf(el)
+	})
+
 }
 
-// uncomment to observe example
-console.log(exampleFunction(employees));
-
+console.log(secondExercise(employees));
