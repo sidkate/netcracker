@@ -20,17 +20,12 @@ var employees = [{"name":"Alex","surname":"Yavkin","position":"sr. engineer","de
 //Exercise 1
 function firstExercise(employees) {
 
-	const result = [];
-	  
-  	for (let i = 0; i < employees.length; i++) {
-	  	if (employees[i].department === "GUI" && employees[i].salary > 15000) {
-		  result.push(employees[i]);
-	  	}
-  	}
-
-  	return result.sort(function(a, b) {
-	  	var dateA = new Date(a.birthday), dateB = new Date(b.birthday);
-		return dateA-dateB; //сортировка по возрастающей дате рождения
+	var result = [];
+	
+	return result = employees.filter(function(element) {
+		return element.department === "GUI" && element.salary > 15000;
+	}).sort(function(firstDate, secondDate) {
+		return new Date(firstDate.birthday) - new Date(secondDate.birthday);
   	})
 
 }
@@ -41,16 +36,18 @@ console.log(firstExercise(employees));
 //Exercise 2
 function secondExercise(employees) {
 
-	const femaleNames = [];
+	var femaleEmployees = [];
+	var femaleNames = [];
 
-	for (let i = 0; i < employees.length; i++) {
-		if(employees[i].gender === "female") {
-			femaleNames.push(employees[i].name);
-		}
-	}
+	femaleEmployees = employees.filter(function(element) {
+		return element.gender === "female";
+	})
 	
-	return femaleNames.sort().filter(function(el,i,a) {
-		return i === a.indexOf(el);
+	femaleEmployees.forEach(function(element) {
+		femaleNames.push(element.name)});
+	
+	return femaleNames.sort().filter(function(element, index, arr) {
+		return index === arr.indexOf(element);
 	})
 
 }
