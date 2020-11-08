@@ -105,6 +105,7 @@ body {
 
 .menu-main .basket a {
   background: url(img/shopping.png) left center no-repeat;
+  color: #fff;
 }
 
 
@@ -122,7 +123,7 @@ body {
   border-radius: 10px;
   box-shadow: 0 0 10px #3e4d62;
   width: 200px;
-  height: 300px;
+  height: 310px;
   margin: 10px 15px;
   padding: 20px 10px 40px;
   justify-content: center;
@@ -154,3 +155,70 @@ h1 {
   color: #3e4d62;
 }
 
+.popup {
+  visibility: hidden;
+  display: block;
+  width: 30%;
+  height: 30%;
+  background-color: #f8f8f8;
+  padding: 30px;
+  position: fixed;
+  left: 35%;
+  top: 30%;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 100vw rgba(62,77,98,0.7);
+}
+
+.heading-popup{
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: arial;
+  color: #3e4d62;
+  font-size: 16px;
+}
+
+.close-popup {
+  display: block;
+  position: absolute;
+  transform: rotate(45deg);
+  font-size: 24px;
+  font-weight: bold;
+  color: #3e4d62;
+  top: 5px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.popap-list {
+  text-align:left;
+  border-collapse: collapse;
+  font-size: 16px;
+  font-family: arial;
+  color: #3e4d62;
+}
+
+.heading-list-popup{
+  text-align: center;
+  border-collapse: collapse;
+  border-spacing: 5px;
+  border-bottom:  3px solid #3e4d62;
+  font-size: 16px;
+  padding: 12px 10px;
+  font-family: arial;
+  color: #3e4d62;
+}
+
+.delete-item-basket{
+  transform: rotate(45deg);
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.loader {
+  visibility: hidden;
+  display: block;
+  position: fixed;
+  left: 50%;
+  top: 30%;
+}
