@@ -4,7 +4,6 @@ body {
 }
 
 .conteiner {
-  width: ​​800px;
   margin: 0 auto;
 }
 
@@ -18,7 +17,7 @@ body {
 }
 
 .content1 {
-   height: 400px; 
+   height: 70vh; 
 } 
 
 /*Меню*/
@@ -126,8 +125,8 @@ body {
   height: 310px;
   margin: 10px 15px;
   padding: 20px 10px 40px;
-  justify-content: center;
-  align-items: flex-end;
+  /*justify-content: center;
+  align-items: flex-end;*/
 }
 
 ul {
@@ -155,6 +154,13 @@ h1 {
   color: #3e4d62;
 }
 
+@media (max-width: 500px) {
+  .product-list > li{
+    flex: 0 0 60%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
 .popup {
   visibility: hidden;
   display: block;
