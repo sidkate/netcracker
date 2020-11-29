@@ -48,6 +48,9 @@ function updatePopupData() {
     for (let id in products) {
 
         let product = products[id];
+        // destructuring assignment example
+        // let [title, count, price] = [product.title, product.count, product.price];
+        // let cost = count * price;
         let basketItemTemplate = `
             <td>${product.title}</td>
             <td>${product.count} шт. </td>
