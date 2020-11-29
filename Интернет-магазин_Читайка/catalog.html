@@ -17,7 +17,7 @@
           <li class="catalog active"><a href="#">Каталог</a></li>
           <li class="contacts"><a href="contacts.html">Контакты</a></li>
           <li class="registr"><a href="registration.html">Регистрация</a></li>
-          <li class="basket" onclick="openPopup()"><a href="#" id="basket">0</a></li>
+          <li class="basket" onclick="shoppingCart.openPopup()"><a href="#" id="basket">0</a></li>
         </ul>
         <div class="header-burger">
           <span></span>
@@ -29,21 +29,21 @@
         <ul class="product-list">
           <li>
             <a href="#"><img src="img/harry_potter_1books.jpg" width="195" height="280" /><br />Гарри Поттер и Философский камень</a><br />800 р.
-            <button class="button" onclick="addItemToBasket('Гарри Поттер и Философский камень', 800, 1)">
+            <button class="button" onclick="shoppingCart.addItemToBasket('Гарри Поттер и Философский камень', 800, 1)">
               В корзину
             </button>
           </li>
 
           <li>
             <a href="#"><img src="img/harry_potter_2books.jpg" width="195" height="280" /><br />Гарри Поттер и Тайная комната</a><br />950 р.
-            <button class="button" onclick="addItemToBasket('Гарри Поттер и Тайная комната', 950, 2)">
+            <button class="button" onclick="shoppingCart.addItemToBasket('Гарри Поттер и Тайная комната', 950, 2)">
               В корзину
             </button>
           </li>
 
           <li>
             <a href="#"><img src="img/harry_potter_3books.jpg" width="195" height="280" /><br />Гарри Поттер и узник Азкабана</a><br />840 р.
-            <button class="button" onclick="addItemToBasket('Гарри Поттер и узник Азкабана', 840, 3)">
+            <button class="button" onclick="shoppingCart.addItemToBasket('Гарри Поттер и узник Азкабана', 840, 3)">
               В корзину
             </button>
           </li>
@@ -56,7 +56,7 @@
       </div>
 
       <div class="popup" id="popup">
-        <span class="close-popup" onclick="closePopup()">+</span>
+        <span class="close-popup" onclick="shoppingCart.closePopup()">+</span>
         <p class="heading-popup">Товары в Вашей корзине:</p>
         <table class="heading-list-popup" width="500">
           <tr>
