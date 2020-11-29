@@ -1,5 +1,5 @@
 let counter = 0;
-let products = {};
+let products = new Map();
 
 let basketElement;
 let loader;
@@ -20,17 +20,17 @@ function addItemToBasket(title, price, id) {
 
     basketElement.innerText = counter;
 
-    let product = products[id];
+    let product = products.get(id);
 
     if (product) {
         product.count++;
     } else {
-        products[id] = {
+        products.set(id, {
             title: title,
             price: price,
             id: id,
             count: 1
-        };
+        });
     }
 
     updatePopupData();
@@ -45,9 +45,9 @@ function updatePopupData() {
 
     popupList.innerHTML = '';
 
-    for (let id in products) {
+    for (let [id, product] of products) {
 
-        let product = products[id];
+        //let product = products[id];
         // destructuring assignment example
         // let [title, count, price] = [product.title, product.count, product.price];
         // let cost = count * price;
@@ -85,11 +85,11 @@ function updatePopupData() {
 }
 
 function deleteProduct(id) {
-    let product = products[id];
+    let product = products.get(id);
     if (product) {
         counter -= product.count;
         basketElement.innerText = counter;
-        delete products[id];
+        products.delete(id);
         updatePopupData();
 
     }
