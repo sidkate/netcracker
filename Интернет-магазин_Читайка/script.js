@@ -48,8 +48,15 @@ function updatePopupData() {
     for (let id in products) {
 
         let product = products[id];
+        let basketItemTemplate = `
+            <td>${product.title}</td>
+            <td>${product.count} шт. </td>
+            <td>${product.count * product.price} руб. </td>
+            <td class="delete-item-basket" onclick="deleteProduct(${id})"> + </td>
+        `;
+
         let basketItem = document.createElement('tr');
-        let title = document.createElement('td');
+        /*let title = document.createElement('td');
         let count = document.createElement('td');
         let price = document.createElement('td');
         let itemDelete = document.createElement('td');
@@ -57,18 +64,20 @@ function updatePopupData() {
         title.innerText = product.title;
         count.innerText = product.count + ' шт. ';
         price.innerText = product.count * product.price + ' руб. ';
-        itemDelete.innerText = " + ";
-        itemDelete.onclick = () => {
-            deleteProduct(id);
-        };
+        itemDelete.innerText = " + ";*/
+        basketItem.innerHTML = basketItemTemplate;
+        //let itemDelete = basketItem.getElementsByClassName
+        // itemDelete.onclick = () => {
+        //     deleteProduct(id);
+        // };
 
-        itemDelete.classList.add('delete-item-basket');
+        //itemDelete.classList.add('delete-item-basket');
 
         popupList.appendChild(basketItem);
-        basketItem.appendChild(title);
+        /*basketItem.appendChild(title);
         basketItem.appendChild(count);
         basketItem.appendChild(price);
-        basketItem.appendChild(itemDelete);
+        basketItem.appendChild(itemDelete);*/
     }
 }
 
