@@ -30,14 +30,10 @@ class ShoppingCart {
         let product = this.products.get(id);
 
         if (product) {
-            product.count++;
+            product.addQuantity();
         } else {
-            this.products.set(id, {
-                title: title,
-                price: price,
-                id: id,
-                count: 1
-            });
+            product = new Product(id, title, price);
+            this.products.set(id, product);
         }
 
         this.updatePopupData();
@@ -53,41 +49,7 @@ class ShoppingCart {
         popupList.innerHTML = '';
 
         for (let [id, product] of this.products) {
-
-            //let product = products[id];
-            // destructuring assignment example
-            // let [title, count, price] = [product.title, product.count, product.price];
-            // let cost = count * price;
-            let basketItemTemplate = `
-                <td>${product.title}</td>
-                <td>${product.count} шт. </td>
-                <td>${product.count * product.price} руб. </td>
-                <td class="delete-item-basket" onclick="shoppingCart.deleteProduct(${id})"> + </td>
-            `;
-
-            let basketItem = document.createElement('tr');
-            /*let title = document.createElement('td');
-            let count = document.createElement('td');
-            let price = document.createElement('td');
-            let itemDelete = document.createElement('td');
-    
-            title.innerText = product.title;
-            count.innerText = product.count + ' шт. ';
-            price.innerText = product.count * product.price + ' руб. ';
-            itemDelete.innerText = " + ";*/
-            basketItem.innerHTML = basketItemTemplate;
-            //let itemDelete = basketItem.getElementsByClassName
-            // itemDelete.onclick = () => {
-            //     deleteProduct(id);
-            // };
-
-            //itemDelete.classList.add('delete-item-basket');
-
-            popupList.appendChild(basketItem);
-            /*basketItem.appendChild(title);
-            basketItem.appendChild(count);
-            basketItem.appendChild(price);
-            basketItem.appendChild(itemDelete);*/
+            product.appendToPopupList();
         }
     }
 
@@ -119,4 +81,54 @@ class ShoppingCart {
         loader.style.visibility = 'hidden';
     }
 
+}
+
+class Product {
+
+    constructor(id, title, price) {
+        this.id = id;
+        this.title = title;
+        this.price = price;
+        this.count = 1;
+    }
+
+    addQuantity() {
+        this.count++;
+    }
+
+    appendToPopupList() {
+        // destructuring assignment example
+        // let [title, count, price] = [this.title, this.count, this.price];
+        // let cost = count * price;
+        let basketItemTemplate = `
+            <td>${this.title}</td>
+            <td>${this.count} шт. </td>
+            <td>${this.count * this.price} руб. </td>
+            <td class="delete-item-basket" onclick="shoppingCart.deleteProduct(${this.id})"> + </td>
+        `;
+
+        let basketItem = document.createElement('tr');
+        /*let title = document.createElement('td');
+        let count = document.createElement('td');
+        let price = document.createElement('td');
+        let itemDelete = document.createElement('td');
+
+        title.innerText = product.title;
+        count.innerText = product.count + ' шт. ';
+        price.innerText = product.count * product.price + ' руб. ';
+        itemDelete.innerText = " + ";*/
+        basketItem.innerHTML = basketItemTemplate;
+        //let itemDelete = basketItem.getElementsByClassName
+        // itemDelete.onclick = () => {
+        //     deleteProduct(id);
+        // };
+
+        //itemDelete.classList.add('delete-item-basket');
+
+        popupList.appendChild(basketItem);
+        /*basketItem.appendChild(title);
+        basketItem.appendChild(count);
+        basketItem.appendChild(price);
+        basketItem.appendChild(itemDelete);*/
+    }
 }
