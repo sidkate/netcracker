@@ -162,7 +162,7 @@ h1 {
   }
 }
 .popup {
-  visibility: hidden;
+  /*visibility: hidden;*/
   display: block;
   width: 30%;
   height: 30%;
