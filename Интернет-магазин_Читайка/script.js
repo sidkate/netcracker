@@ -1,6 +1,5 @@
 let basketElement;
 let loader;
-let popup;
 let shoppingCart;
 
 window.onload = () => {
@@ -20,10 +19,11 @@ class ShoppingCart {
         this.counter = 0;
         this.products = new Map();
         this.popupWrapper = wrapper;
+        this.popup = undefined;
     }
 
     addItemToBasket(title, price, id) {
-        if (popup)
+        if (this.popup)
             return;
 
         let product = this.products.get(id);
@@ -65,7 +65,7 @@ class ShoppingCart {
     }
 
     openPopup() {
-        if (popup)
+        if (this.popup)
             return;
 
         let popupTemplate = `
@@ -88,15 +88,15 @@ class ShoppingCart {
         this.popupWrapper.appendChild(popupElement);
         this.popupList = document.getElementById('popupList');
 
-        popup = popupElement;
+        this.popup = popupElement;
 
         this.updatePopupData();
     }
 
     closePopup() {
-        if (popup) {
-            this.popupWrapper.removeChild(popup);
-            popup = undefined;
+        if (this.popup) {
+            this.popupWrapper.removeChild(this.popup);
+            this.popup = undefined;
         }
     }
 
