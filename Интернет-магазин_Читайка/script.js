@@ -11,6 +11,7 @@ window.onload = () => {
 
     let container = document.getElementById('container');
     shoppingCart = new ShoppingCart(container);
+    showCatalog();
 }
 
 class ShoppingCart {
@@ -229,4 +230,43 @@ class Counter {
         this.updateCounterValue();
     }
 
+}
+
+let getCatalogItems = () => {
+    const items = [
+        {
+            id: 1,
+            title: 'Гарри Поттер и Философский камень',
+            img: 'img/harry_potter_1books.jpg',
+            price: 800.0
+        },
+        {
+            id: 2,
+            title: 'Гарри Поттер и Тайная комната',
+            img: 'img/harry_potter_2books.jpg',
+            price: 950.0
+        },
+        {
+            id: 3,
+            title: 'Гарри Поттер и узник Азкабана',
+            img: 'img/harry_potter_3books.jpg',
+            price: 840.0
+        },
+    ];
+    return items;
+}
+
+let showCatalog = () => {
+    let items = getCatalogItems();
+    items.forEach(item => {
+        let list = document.getElementsByClassName("product-list")[0];
+        let li = document.createElement('li');
+        li.innerHTML = `
+            <a href="#"><img src="${item.img}" width="195" height="280" /><br />${item.title}</a><br />${item.price} р.
+            <button class="product-list__button" onclick="shoppingCart.addItemToBasket('${item.title}', ${item.price}, ${item.id})">
+                В корзину
+            </button>
+        `;
+        list.appendChild(li);
+    });
 }
