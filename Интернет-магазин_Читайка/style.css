@@ -1,9 +1,11 @@
-body {
+/*body {
   background-color: #f8f8f8;
   font-family: Arial;
-}
+}*/
 
 .container {
+  background-color: #f8f8f8;
+  font-family: Arial;
   margin: 0 auto;
 }
 
@@ -27,7 +29,7 @@ body {
   height: 120px;
 }
 
-.logo {
+.header__logo {
   display: inline-block;
 }
 
@@ -61,48 +63,48 @@ body {
   line-height: 30px;
 }
 
-.menu-main .active a,
+.menu-main ._active a,
 .menu-main a:hover {
   color: #fff;
 }
 
-.menu-main .home a {
+.menu-main .menu-main__home a {
   background: url(img/ic_home.png) left center no-repeat;
 }
 
-.menu-main .home.active a,
-.menu-main .home a:hover {
+.menu-main .menu-main__home._active a,
+.menu-main .menu-main__home a:hover {
   background: url(img/ic_home_h.png) left center no-repeat;
 }
 
-.menu-main .catalog a {
+.menu-main .menu-main__catalog a {
   background: url(img/ic_catalog.png) left center no-repeat;
 }
 
-.menu-main .catalog.active a,
-.menu-main .catalog a:hover {
+.menu-main .menu-main__catalog._active a,
+.menu-main .menu-main__catalog a:hover {
   background: url(img/ic_catalog_h.png) left center no-repeat;
 }
 
-.menu-main .contacts a {
+.menu-main .menu-main__contacts a {
   background: url(img/ic_contacts.png) left center no-repeat;
 }
 
-.menu-main .contacts.active a,
-.menu-main .contacts a:hover {
+.menu-main .menu-main__contacts._active a,
+.menu-main .menu-main__contacts a:hover {
   background: url(img/ic_contacts_h.png) left center no-repeat;
 }
 
-.menu-main .registr a {
+.menu-main .menu-main__registr a {
   background: url(img/ic_registr.png) left center no-repeat;
 }
 
-.menu-main .registr.active a,
-.menu-main .registr a:hover {
+.menu-main .menu-main__registr._active a,
+.menu-main .menu-main__registr a:hover {
   background: url(img/ic_registr_h.png) left center no-repeat;
 }
 
-.menu-main .basket a {
+.menu-main .menu-main__basket a {
   background: url(img/shopping.png) left center no-repeat;
   color: #fff;
 }
@@ -129,10 +131,11 @@ body {
   align-items: flex-end;*/
 }
 
-ul {
+/*ul {
   display: block;
   list-style: none;
-}
+}*/
+
 .product-list li {
   display: list-item;
   text-align: center;
