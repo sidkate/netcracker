@@ -161,7 +161,7 @@ class Product {
             <td>${this.title}</td>
             <td class="counter"></td>
             <!--<td>${this.count} шт. </td>-->
-            <td>${this.count * this.price} руб. </td>
+            <td><span class="cost">${this.getCost()}</span> руб. </td>
             <td class="delete-item-basket" onclick="shoppingCart.deleteProduct(${this.id})"> + </td>
         `;
 
@@ -182,14 +182,21 @@ class Product {
         // };
 
         //itemDelete.classList.add('delete-item-basket');
+        let costElement = basketItem.getElementsByClassName('cost')[0];
 
         wrapper.appendChild(basketItem);
         let counterWrapper = basketItem.getElementsByClassName('counter')[0];
-        new Counter(counterWrapper, this);
+        new Counter(counterWrapper, this).onchange = () => {
+            costElement.innerText = this.getCost();
+        };
         /*basketItem.appendChild(title);
         basketItem.appendChild(count);
         basketItem.appendChild(price);
         basketItem.appendChild(itemDelete);*/
+    }
+
+    getCost() {
+        return this.count * this.price;
     }
 }
 
@@ -220,6 +227,8 @@ class Counter {
     updateCounterValue() {
         let counterValueElement = this.wrapper.getElementsByClassName('counter-value')[0];
         counterValueElement.innerText = this.product.count;
+        if (this.onchange)
+            this.onchange(this);
     }
 
     plus() {
