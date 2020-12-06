@@ -228,3 +228,21 @@ h1 {
   left: 50%;
   top: 30%;
 }
+
+.counter-in-popup div{
+  display: inline-block;
+}
+
+.minus, .counter-value, .plus{
+  border-style: solid;
+  font-weight: bold;
+  width:20px; 
+  background:rgba(216, 222, 230, 0.7); 
+  float:left; 
+  text-align:center;
+  padding: 2px;
+}
+
+.minus, .plus{
+  cursor: pointer;
+}

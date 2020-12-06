@@ -157,7 +157,7 @@ class Product {
         let basketItemTemplate = `
             <td>${this.title}</td>
             <td class="counter"></td>
-            <td>${this.count} шт. </td>
+            <!--<td>${this.count} шт. </td>-->
             <td>${this.count * this.price} руб. </td>
             <td class="delete-item-basket" onclick="shoppingCart.deleteProduct(${this.id})"> + </td>
         `;
@@ -201,9 +201,11 @@ class Counter {
 
     createElement() {
         let counterTemplate = `
+            <div class="counter-in-popup">
             <div class="minus">-</div>
             <div class="counter-value"></div>
             <div class="plus">+</div>
+            </div>
         `;
         this.wrapper.innerHTML = counterTemplate;
         let minusElement = this.wrapper.getElementsByClassName('minus')[0];
