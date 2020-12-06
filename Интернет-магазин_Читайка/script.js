@@ -11,7 +11,9 @@ window.onload = () => {
 
     let container = document.getElementById('container');
     shoppingCart = new ShoppingCart(container);
-    showCatalog();
+
+    let someDiscount = discountCalc(0.15);
+    showCatalog(getCatalogItems, someDiscount, [1, 3]);
 }
 
 class ShoppingCart {
@@ -232,7 +234,13 @@ class Counter {
 
 }
 
-let getCatalogItems = () => {
+const discountCalc = (discountRate) => {
+    return (price) => {
+        return price - (price * discountRate);
+    }
+}
+
+let getCatalogItems = (discount, discountItems) => {
     const items = [
         {
             id: 1,
@@ -253,11 +261,24 @@ let getCatalogItems = () => {
             price: 840.0
         },
     ];
+    if (discount && discountItems) {
+        return items.map((item) => {
+            if (discountItems.includes(item.id)) {
+                let newItem = {
+                    ...item
+                };
+                newItem.price = discount(item.price);
+                return newItem;
+            } else {
+                return item;
+            }
+        });
+    }
     return items;
 }
 
-let showCatalog = () => {
-    let items = getCatalogItems();
+let showCatalog = (func, discount, discountItems) => {
+    let items = func(discount, discountItems);
     items.forEach(item => {
         let list = document.getElementsByClassName("product-list")[0];
         let li = document.createElement('li');
