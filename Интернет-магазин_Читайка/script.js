@@ -6,8 +6,6 @@ window.onload = () => {
     // initializing global variables after page was loaded
     basketElement = document.getElementById('basket');
     loader = document.getElementById('loader');
-    //popup = document.getElementById('popup');
-    //popupList = document.getElementById('popupList');
 
     let container = document.getElementById('container');
     shoppingCart = new ShoppingCart(container);
@@ -36,8 +34,6 @@ class ShoppingCart {
             this.products.set(id, product);
         }
         product.plus();
-
-        //this.updatePopupData();
 
         this.showLoader(() => {
             this.hideLoader();
@@ -166,22 +162,9 @@ class Product {
         `;
 
         let basketItem = document.createElement('tr');
-        /*let title = document.createElement('td');
-        let count = document.createElement('td');
-        let price = document.createElement('td');
-        let itemDelete = document.createElement('td');
 
-        title.innerText = product.title;
-        count.innerText = product.count + ' шт. ';
-        price.innerText = product.count * product.price + ' руб. ';
-        itemDelete.innerText = " + ";*/
         basketItem.innerHTML = basketItemTemplate;
-        //let itemDelete = basketItem.getElementsByClassName
-        // itemDelete.onclick = () => {
-        //     deleteProduct(id);
-        // };
 
-        //itemDelete.classList.add('delete-item-basket');
         let costElement = basketItem.getElementsByClassName('cost')[0];
 
         wrapper.appendChild(basketItem);
@@ -195,10 +178,6 @@ class Product {
             this.minus();
             costElement.innerText = this.getCost();
         }
-        /*basketItem.appendChild(title);
-        basketItem.appendChild(count);
-        basketItem.appendChild(price);
-        basketItem.appendChild(itemDelete);*/
     }
 
     getCost() {
