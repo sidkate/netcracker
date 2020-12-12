@@ -186,9 +186,15 @@ class Product {
 
         wrapper.appendChild(basketItem);
         let counterWrapper = basketItem.getElementsByClassName('counter')[0];
-        new Counter(counterWrapper, this).onchange = () => {
+        let counter = new Counter(counterWrapper, this.count);
+        counter.onplus = (counter) => {
+            this.plus();
             costElement.innerText = this.getCost();
-        };
+        }
+        counter.onminus = (counter) => {
+            this.minus();
+            costElement.innerText = this.getCost();
+        }
         /*basketItem.appendChild(title);
         basketItem.appendChild(count);
         basketItem.appendChild(price);
@@ -202,9 +208,9 @@ class Product {
 
 class Counter {
 
-    constructor(wrapper, product) {
-        this.product = product;
+    constructor(wrapper, count) {
         this.wrapper = wrapper;
+        this.count = count;
         this.createElement();
         this.updateCounterValue();
     }
@@ -226,18 +232,20 @@ class Counter {
 
     updateCounterValue() {
         let counterValueElement = this.wrapper.getElementsByClassName('counter-value')[0];
-        counterValueElement.innerText = this.product.count;
-        if (this.onchange)
-            this.onchange(this);
+        counterValueElement.innerText = this.count;
     }
 
     plus() {
-        this.product.plus();
+        this.count++;
+        if (this.onplus)
+            this.onplus(this);
         this.updateCounterValue();
     }
 
     minus() {
-        this.product.minus();
+        this.count--;
+        if (this.onminus)
+            this.onminus(this);
         this.updateCounterValue();
     }
 
