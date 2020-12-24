@@ -17,7 +17,6 @@ window.onload = () => {
 class ShoppingCart {
 
     constructor(wrapper) {
-        this.counter = 0;
         this.products = new Map();
         this.popupWrapper = wrapper;
         this.popup = undefined;
@@ -33,7 +32,7 @@ class ShoppingCart {
             product = new Product(id, title, price);
             this.products.set(id, product);
         }
-        product.plus();
+        this.updateBasketCounter();
 
         this.showLoader(() => {
             this.hideLoader();
@@ -56,9 +55,8 @@ class ShoppingCart {
     deleteProduct(id) {
         let product = this.products.get(id);
         if (product) {
-            this.counter -= product.count;
-            this.updateBasketCounter();
             this.products.delete(id);
+            this.updateBasketCounter();
             this.updatePopupData();
         }
     }
@@ -108,16 +106,8 @@ class ShoppingCart {
         loader.style.visibility = 'hidden';
     }
 
-    plus() {
-        this.counter++;
-        this.updateBasketCounter();
-    }
-
-    minus() {
-        if (this.counter > 0) {
-            this.counter--;
-            this.updateBasketCounter();
-        }
+    get counter() {
+        return Array.from(this.products.values()).reduce((sum, product) => sum + product.count, 0);
     }
 
     updateBasketCounter() {
@@ -132,21 +122,7 @@ class Product {
         this.id = id;
         this.title = title;
         this.price = price;
-        this.count = 0;
-    }
-
-    plus() {
-        this.count++;
-        shoppingCart.plus();
-    }
-
-    minus() {
-        if (this.count > 1) {
-            this.count--;
-            shoppingCart.minus();
-        } else {
-            shoppingCart.deleteProduct(this.id);
-        }
+        this.count = 1;
     }
 
     appendToPopupList(wrapper) {
@@ -170,13 +146,14 @@ class Product {
         wrapper.appendChild(basketItem);
         let counterWrapper = basketItem.getElementsByClassName('counter')[0];
         let counter = new Counter(counterWrapper, this.count);
-        counter.onplus = (counter) => {
-            this.plus();
+        counter.onchange = (count) => {
+            this.count = count;
+            if (this.count == 0) {
+                shoppingCart.deleteProduct(this.id);
+                return;
+            }
             costElement.innerText = this.getCost();
-        }
-        counter.onminus = (counter) => {
-            this.minus();
-            costElement.innerText = this.getCost();
+            shoppingCart.updateBasketCounter();
         }
     }
 
@@ -212,19 +189,17 @@ class Counter {
     updateCounterValue() {
         let counterValueElement = this.wrapper.getElementsByClassName('counter-value')[0];
         counterValueElement.innerText = this.count;
+        if (this.onchange)
+            this.onchange(this.count);
     }
 
     plus() {
         this.count++;
-        if (this.onplus)
-            this.onplus(this);
         this.updateCounterValue();
     }
 
     minus() {
         this.count--;
-        if (this.onminus)
-            this.onminus(this);
         this.updateCounterValue();
     }
 
