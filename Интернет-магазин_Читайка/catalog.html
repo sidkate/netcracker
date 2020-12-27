@@ -11,7 +11,11 @@
     <div id="container" class="container">
       <div class="header">
         <a class="header__logo" href=""><img class="header__logo" src="img/logo2.jpg" /></a>
-        
+
+        <div class="menu-burger" onclick="openBurger()">
+          <span></span>
+        </div>
+
         <ul class="menu-main">
           <li class="menu-main__home"><a href="index.html">Главная</a></li>
           <li class="menu-main__catalog _active"><a href="#">Каталог</a></li>
@@ -19,9 +23,7 @@
           <li class="menu-main__registr"><a href="registration.html">Регистрация</a></li>
           <li class="menu-main__basket" onclick="shoppingCart.openPopup()"><a href="#" id="basket">0</a></li>
         </ul>
-        <div class="menu-burger">
-          <span></span>
-        </div>
+        
       </div>
       <div class="content">
         <hr />

@@ -287,3 +287,10 @@ let showCatalog = (func, discount, discountItems) => {
         list.appendChild(li);
     });
 }
+
+function openBurger() {
+    let divElement = document.getElementsByClassName('menu-burger')[0];
+    divElement.classList.toggle('_active');
+    let ulElement = document.getElementsByClassName('menu-main')[0];
+    ulElement.classList.toggle('_active');
+}
